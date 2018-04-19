@@ -12,6 +12,7 @@
         "panique/laravel-sass": "^1.0"
     },
     "require-dev": {
+        "ajthinking/tinx": "^2.1",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "laravel/homestead": "^7.3",
