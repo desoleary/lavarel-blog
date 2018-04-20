@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Billing\Stripe;
 use App\Post;
+use App\Tag;
 use function foo\func;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.sidebar', function ($view) {
-            $view->with('archives', Post::archive());
+            $archives = Post::archive();
+            $tags = Tag::has('posts')->pluck('name');
+
+            $view->with(compact('archives', 'tags'));
         });
     }
 

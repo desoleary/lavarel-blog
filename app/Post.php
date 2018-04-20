@@ -44,4 +44,9 @@ class Post extends Model
     public function addComment($body) {
         return $this->comments()->create(compact('body'));
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
