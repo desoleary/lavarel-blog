@@ -24,7 +24,6 @@
 
 <div class="container">
     @include('layouts.nav')
-    @include('layouts.header')
 </div>
 
 <main role="main" class="container">
