@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\User;
+use App\Repositories\Posts;
+
 
 class PostsController extends Controller
 {
@@ -12,11 +13,9 @@ class PostsController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(Posts $posts) // Dependency injection
     {
-        $posts = Post::latest()
-            ->filter(request(['month', 'year']))
-            ->get();
+        $posts = $posts->filter(request(['month', 'year']));
 
         return view('posts.index', compact('posts', 'archives'));
     }
