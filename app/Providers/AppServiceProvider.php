@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Billing\Stripe;
 use App\Post;
 use function foo\func;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // registering service container
+        $this->app->singleton(Stripe::class, function (){
+            return new \App\Billing\Stripe(config('services.stripe.secret'));
+        });
     }
 }
